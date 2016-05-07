@@ -32,7 +32,6 @@ def print_heading(option)
 		puts_line "The Current date is: #{Time.now.strftime("%B %d, %Y")}"
 	end
 	def ascii_products
-
 		puts_line "                     _            _       "
 		puts_line "                    | |          | |      "
 		puts_line " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
@@ -68,10 +67,9 @@ def create_report
 		# Print "Sales Report" in ascii art
 		# Print today's date
 		print_heading(1)
-
-		def product_data
-			# Print "Products" in ascii art
+		# Print "Products" in ascii art
 			print_heading(2)
+		def product_data			
 			# For each product in the data set:
 			$products_hash["items"].each do |toy|	
 			sales = 0
@@ -101,35 +99,25 @@ def create_report
 				puts_line "Average Discount: $#{discount}"
 				puts_line "Average Discount Percentage: " + discount_percentage.round(2).to_s + "%" 
 			end
-
 		end
-		
 		product_data
 		space
+		# Print "Brands" in ascii art			
+			print_heading(3)			
 		def brand_data
-			# Print "Brands" in ascii art			
-			print_heading(3)
-			
-			
-
 			# For each brand in the data set:
 			$toy_brands = $products_hash["items"].map { |item| item["brand"] }.uniq
 		  $toy_brands.each do |brand|
 		  brands_toys = $products_hash["items"].select{ |item| item["brand"] == brand }  
 		  # Print the name of the brand
-		  space
 		  puts_line "#{brand}"
 		  border
-
 		  # Data and Calculations
 		  total_stock_brand = 0
-		  
-		  
 		  total_full_price_brand = 0
 		  total_brand_products = 0
 		  total_sales = 0
 		  brands_toys.each {|toy| total_stock_brand += toy["stock"].to_i }
-
 			# Count and print the number of the brand's toys we stock
 			brands_toys.each {|toy| total_brand_products += toy["purchases"].length}
 			puts_line "Number of Toys in Stock: #{total_stock_brand}"
@@ -140,10 +128,7 @@ def create_report
       	total_full_price_brand += item["full-price"].to_f 
     		end
     	end
-    	#puts_line "PART 1*************Total Brand Products: #{total_brand_products}"
-      #puts_line "PART 2*************Total Retail : #{(total_full_price_brand.round(2))}"
 			puts_line "Average Price $#{(total_full_price_brand.round(2)/total_brand_products).round(2)}"
-
 			# Calculate and print the total sales volume of all the brand's toys combined
 			brands_toys.each do |item|
     		item["purchases"].each do |el|   
@@ -154,9 +139,7 @@ def create_report
 		  space
 		### Call Methods Here
 			end
-
 		end
-			
 		brand_data
 	end
 	print_data
@@ -168,5 +151,5 @@ def start
   create_report # create the report!
 end
 	start # call start method to trigger report generation
-	
+	file_close
 
