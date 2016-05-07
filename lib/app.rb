@@ -16,6 +16,9 @@ end
 def border
 	wline "*" * 50
 end
+def space
+	wline ""
+end
 def print_heading(option)
 	def ascii_sales_report
 		wline " ____                      ____                       _   "   
@@ -64,6 +67,7 @@ def create_report
 		# Print "Sales Report" in ascii art
 		# Print today's date
 		print_heading(1)
+
 		def product_data
 			# Print "Products" in ascii art
 			print_heading(2)
@@ -77,12 +81,19 @@ def create_report
 				wline "Retail Price: $#{toy["full-price"]}"
 		# Calculate and print the total amount of sales
 				wline "Total Purchases: #{toy["purchases"].length}"
-			
-				
+				sales = 0
+				  #toy["purchases"]["price".to_i]["price"]
+				toy["purchases"].each do |purchase|
+				  sales += purchase["price"] 	
+			  end
+			  wline "Total Sales: $#{sales}"
+
+		  	space
+			end
 			# Calculate and print the average price the toy sold for
 		
 			# Calculate and print the average discount (% or $) based off the average sales price
-			end
+			
 		end
 		product_data
 		def brand_data
