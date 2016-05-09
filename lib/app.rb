@@ -16,6 +16,9 @@ end
 def border
 	puts_line "*" * 50
 end
+def data
+puts_line "The Current date is: #{Time.now.strftime("%B %d, %Y")}"
+end
 def space
 	puts_line ""
 end
@@ -29,7 +32,7 @@ def print_heading(option)
 		puts_line "                                    |_|                   "	
 		space
 		puts_line border
-		puts_line "The Current date is: #{Time.now.strftime("%B %d, %Y")}"
+		date
 	end
 	def ascii_products
 		puts_line "                     _            _       "
