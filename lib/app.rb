@@ -86,11 +86,11 @@ def create_report
 		  purchases = toy["purchases"].length 	
 			average_price = sales/purchases
 			discount = retail_price.to_f - average_price.to_f 
-			discount_percentage = (discount/retail_price) * 100
+			discount_percentage = ((discount/retail_price) * 100).round(2).to_s
 			# Data for the Sales Report 
-			def write_to_file(message, data)
+			def write_to_file(message, data, options = {})
 				# method for writing to file
-				puts_line "'" + message + '#' + data + "'"
+				puts_line "'" + message + '#' + data + options + "'"
 			end
 			# Print the name of the brand	
 				space					
@@ -104,9 +104,9 @@ def create_report
 			  write_to_file("Total Sales: $", sales)			
 			# Calculate and print the average price the toy sold for
 				#write_to_file and print the average discount (% or $) based off the average sales price
-				write_to_file("Average Discount: $", discount)
-			#	write_to_file (Average Discount Percentage: , + discount_percentage.round(2).to_s + "%" 
-			
+				write_to_file("Average Discount: $", discount)				
+			  write_to_file("Average Discount Percentage: ", discount_percentage.round(2).to_s, options["%"])
+				
 		end
 		product_data
 		space
