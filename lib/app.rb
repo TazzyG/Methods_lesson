@@ -82,11 +82,21 @@ def create_report
 				toy["purchases"].each do |purchase|
 				  sales += purchase["price"]
 		  	end
-			retail_price = toy["full-price"].to_f
-		  purchases = toy["purchases"].length 	
-			average_price = sales/purchases
-			discount = retail_price.to_f - average_price.to_f 
-			discount_percentage = ((discount/retail_price) * 100).round(2).to_s
+			def reltail_price
+				toy["full-price"].to_f
+			end
+			def purchases 
+		  	toy["purchases"].length 
+	  	end	
+	  	def average_price s
+	  		sales/purchases
+	  	end
+	  	def discount
+	  		retail_price.to_f - average_price.to_f 
+	  	end
+	  	def discount_percentage 
+	  		((discount/retail_price) * 100).round(2).to_s
+	  	end
 			# Data for the Sales Report 
 			def write_to_file(message, data, options = {})
 				# method for writing to file
@@ -103,6 +113,7 @@ def create_report
 			# Calculate and print the total amount of sales		
 			  write_to_file("Total Sales: $", sales)			
 			# Calculate and print the average price the toy sold for
+				write_to_file("Desciption: Average price", calc_average_price(calc_total_sales(toy, false), toy["purchases"].length))
 				#write_to_file and print the average discount (% or $) based off the average sales price
 				write_to_file("Average Discount: $", discount)				
 			  write_to_file("Average Discount Percentage: ", discount_percentage.round(2).to_s, options["%"])
