@@ -73,16 +73,8 @@ def create_report
 		# Print "Products" in ascii art
 			print_heading(2)
 		end
-		def product_data
-				
-			# For each product in the data set:
-			$products_hash["items"].each do |toy|	
-			sales = 0
-				#toy["purchases"]["price".to_i]["price"]
-				toy["purchases"].each do |purchase|
-				  sales += purchase["price"]
-		  	end
-			def reltail_price
+		
+			def retail_price
 				toy["full-price"].to_f
 			end
 			def purchases 
@@ -102,6 +94,15 @@ def create_report
 				# method for writing to file
 				puts_line "'" + message + '#' + data + options + "'"
 			end
+			def product_data
+				
+			# For each product in the data set:
+			$products_hash["items"].each do |toy|	
+			sales = 0
+				#toy["purchases"]["price".to_i]["price"]
+				toy["purchases"].each do |purchase|
+				  sales += purchase["price"]
+		  	
 			# Print the name of the brand	
 				space					
 				write_to_file("", toy["title"])	
@@ -117,7 +118,7 @@ def create_report
 				#write_to_file and print the average discount (% or $) based off the average sales price
 				write_to_file("Average Discount: $", discount)				
 			  write_to_file("Average Discount Percentage: ", discount_percentage.round(2).to_s, options["%"])
-				
+			end
 		end
 		product_data
 		space
