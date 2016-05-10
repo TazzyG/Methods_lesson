@@ -16,7 +16,7 @@ end
 def border
 	puts_line "*" * 50
 end
-def data
+def date
 puts_line "The Current date is: #{Time.now.strftime("%B %d, %Y")}"
 end
 def space
@@ -72,7 +72,9 @@ def create_report
 		print_heading(1)
 		# Print "Products" in ascii art
 			print_heading(2)
-		def product_data			
+		end
+		def product_data
+				
 			# For each product in the data set:
 			$products_hash["items"].each do |toy|	
 			sales = 0
@@ -85,23 +87,26 @@ def create_report
 			average_price = sales/purchases
 			discount = retail_price.to_f - average_price.to_f 
 			discount_percentage = (discount/retail_price) * 100
-
+			# Data for the Sales Report 
+			def write_to_file(message, data)
+				# method for writing to file
+				puts_line "'" + message + '#' + data + "'"
+			end
 			# Print the name of the brand	
 				space					
-				puts_line toy["title"]	
-				border# Print the name of the brand	
+				write_to_file("", toy["title"])	
+				border 
 			# Print the retail price of the toy
-				puts_line "Retail Price: $#{retail_price}"
+				write_to_file("Retail Price: $", retail_price)
 			# Calculate and print the total number of purchases
-				puts_line "Total Purchases: #{purchases}"
+				write_to_file("Total Purchases: ", purchases)
 			# Calculate and print the total amount of sales		
-			  puts_line "Total Sales: $#{sales}"			
+			  write_to_file("Total Sales: $", sales)			
 			# Calculate and print the average price the toy sold for
-				puts_line "Average Price: $#{average_price}"
-			# Calculate and print the average discount (% or $) based off the average sales price
-				puts_line "Average Discount: $#{discount}"
-				puts_line "Average Discount Percentage: " + discount_percentage.round(2).to_s + "%" 
-			end
+				#write_to_file and print the average discount (% or $) based off the average sales price
+				write_to_file("Average Discount: $", discount)
+			#	write_to_file (Average Discount Percentage: , + discount_percentage.round(2).to_s + "%" 
+			
 		end
 		product_data
 		space
